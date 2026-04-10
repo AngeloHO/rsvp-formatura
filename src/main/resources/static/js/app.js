@@ -2,11 +2,15 @@ const form = document.getElementById("formConvidado");
 const lista = document.getElementById("lista");
 const statusEl = document.getElementById("status");
 
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        const welcomeModal = new bootstrap.Modal(document.getElementById('welcomeModal'));
+// ========================================
+// MODAL DE BOAS-VINDAS
+// ========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const welcomeEl = document.getElementById('welcomeModal');
+    if (welcomeEl && typeof bootstrap !== 'undefined') {
+        const welcomeModal = new bootstrap.Modal(welcomeEl);
         welcomeModal.show();
-    }, 500);
+    }
 });
 
 
