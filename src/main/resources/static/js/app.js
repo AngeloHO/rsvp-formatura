@@ -5,13 +5,15 @@ const statusEl = document.getElementById("status");
 // ========================================
 // MODAL DE BOAS-VINDAS
 // ========================================
-document.addEventListener('DOMContentLoaded', () => {
+try {
     const welcomeEl = document.getElementById('welcomeModal');
-    if (welcomeEl && typeof bootstrap !== 'undefined') {
+    if (welcomeEl) {
         const welcomeModal = new bootstrap.Modal(welcomeEl);
         welcomeModal.show();
     }
-});
+} catch (e) {
+    console.error('Erro ao abrir modal de boas-vindas:', e);
+}
 
 
 async function carregarConvidados() {
