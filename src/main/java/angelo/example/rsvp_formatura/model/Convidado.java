@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 @Table(name = "convidados")
 public class Convidado {
 
-    @Id  // Estava @id (minúsculo) - ERRO!
+    @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

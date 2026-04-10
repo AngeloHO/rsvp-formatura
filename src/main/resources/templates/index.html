@@ -7,49 +7,85 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600&display=swap">
     <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css">
 </head>
 <body>
+<!-- Modal de Boas-Vindas -->
+<div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content welcome-modal">
+            <div class="modal-body text-center p-5">
+                <div class="welcome-header mb-4">
+                    <div class="welcome-line"></div>
+                    <h2 class="welcome-title my-4">Você está convidado</h2>
+                    <div class="welcome-line"></div>
+                </div>
+                <p class="welcome-text mb-4">
+                    É com grande satisfação que convido você para celebrar<br>
+                    este momento importante.
+                    Para facilitar nossa organização e garantir que tudo esteja de acordo no dia, preciso que preencha algumas informações para confirmar sua presença.
+                    Além disso você pode verificar informações importantes sobre o evento, como data, local e horário. 
+                    Sua participação é fundamental para tornar esta celebração ainda mais especial!
+                </p>
+                <div class="welcome-details mb-4">
+                    <p class="event-name mb-2">Festa de Angelo e Lucas</p>
+                    <p class="event-date">05 de Setembro de 2026 · 18:00h</p>
+                </div>
+                <button type="button" class="btn btn-welcome" data-bs-dismiss="modal">
+                    Ver Detalhes do Evento
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <section class="hero">
     <div class="container">
-        <h1 class="display-5 fw-bold">Vamos celebrar</h1>
-        <p class="lead">Com muita alegria, tenho o prazer de convidar você para dividir esse momento especial
-            comigo!</p>
+        <div class="hero-content">
+            <div class="hero-ornament mb-4"></div>
+            <h1 class="hero-title mb-4">Celebração de Formatura</h1>
+            <p class="hero-subtitle mb-4">Sua presença tornará este momento ainda mais especial</p>
+            <div class="hero-ornament"></div>
+        </div>
     </div>
 </section>
 <div class="container py-5">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Confirmar presença
-    </button>
+    <div class="text-center mb-5">
+        <div class="section-ornament mx-auto mb-3"></div>
+        <h2 class="section-title mb-3">Confirme sua Presença</h2>
+        <p class="section-subtitle mb-4">Por gentileza, confirme sua participação até 20 de agosto</p>
+        <button type="button" class="btn btn-primary btn-lg btn-confirm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Confirmar Presença
+        </button>
+    </div>
     <!-- Modal Confirmar Presença -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content border-0 shadow">
-                <div class="modal-header border-0 pb-0">
+            <div class="modal-content">
+                <div class="modal-header">
                     <div>
-                        <h5 class="modal-title fw-bold" id="exampleModalLabel"
-                            style="color: #2c3e50; font-size: 1.5rem;">
-                            Confirmar Presença 🎓
+                        <h5 class="modal-title fw-bold" id="exampleModalLabel">
+                            Confirmação de Presença
                         </h5>
-                        <p class="text-muted mb-0" style="font-size: 0.9rem;">Por favor, preencha os dados abaixo para o
-                            nosso planejamento.</p>
+                        <p class="text-muted mb-0 small">Preencha os dados abaixo para confirmar</p>
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4">
                     <form id="formConvidado">
                         <div class="mb-4 text-center">
-                            <label class="form-label d-block fw-bold mb-3">Você poderá comparecer?</label>
+                            <label class="form-label d-block fw-semibold mb-3">Poderá comparecer?</label>
                             <div class="btn-group w-100" role="group">
                                 <input type="radio" class="btn-check" name="presencaConfirmada" id="presencaSim"
                                        value="S" checked autocomplete="off">
-                                <label class="btn btn-outline-success py-2" for="presencaSim">
-                                    Sim, com certeza! 🎉
+                                <label class="btn btn-outline-success py-3" for="presencaSim">
+                                    Sim, confirmo presença
                                 </label>
                                 <input type="radio" class="btn-check" name="presencaConfirmada" id="presencaNao"
                                        value="N" autocomplete="off">
-                                <label class="btn btn-outline-danger py-2" for="presencaNao">
-                                    Infelizmente não 😕
+                                <label class="btn btn-outline-secondary py-3" for="presencaNao">
+                                    Não poderei comparecer
                                 </label>
                             </div>
                         </div>
@@ -89,71 +125,78 @@
             </div>
         </div>
     </div>
-    <div class="row g-4">
+    <div class="row g-4 mt-4">
         <div class="col-md-4">
-            <div class="card text-center w-100 h-100 card-info-fixa">
-                <h5>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            <div class="card text-center w-100 h-100 card-info-fixa card-elegant">
+                <div class="card-icon mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
                          class="bi bi-calendar-check" viewBox="0 0 16 16">
                         <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
                         <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
                     </svg>
-                </h5>
-                <p>05 de Setembro de 20266</p>
+                </div>
+                <h5 class="card-label">Data</h5>
+                <p class="card-value">05 de Setembro de 2026</p>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card text-center w-100 h-100 card-info-fixa">
-                <h5>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            <div class="card text-center w-100 h-100 card-info-fixa card-elegant">
+                <div class="card-icon mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
                          class="bi bi-geo-alt" viewBox="0 0 16 16">
                         <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>
                         <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
                     </svg>
-                    Local
-                </h5>
-                <p>Salão de Eventos Exemplo</p>
-                <p>Rua Exemplo, 123</p>
+                </div>
+                <h5 class="card-label">Local</h5>
+                <p class="card-value">Salão da comunidade Bananeira</p>
+                <p class="card-detail">Serranópolis do Iguaçu</p>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card text-center w-100 h-100 card-info-fixa">
-                <h5>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                         class="bi bi-alarm" viewBox="0 0 16 16">
-                        <path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9z"/>
-                        <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1zm1.038 3.018a6 6 0 0 1 .924 0 6 6 0 1 1-.924 0M0 3.5c0 .753.333 1.429.86 1.887A8.04 8.04 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5M13.5 1c-.753 0-1.429.333-1.887.86a8.04 8.04 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1"/>
+            <div class="card text-center w-100 h-100 card-info-fixa card-elegant">
+                <div class="card-icon mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                         class="bi bi-clock" viewBox="0 0 16 16">
+                        <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
                     </svg>
-                    Horário
-                </h5>
-                <p>20:00</p>
+                </div>
+                <h5 class="card-label">Horário</h5>
+                <p class="card-value">18:00h</p>
             </div>
         </div>
     </div>
     <div class="row mt-5">
         <div class="col">
-            <div class="card p-4 text-center">
-                <h5>⏳ Contagem Regressiva</h5>
-                <div id="countdown" class="mt-3">
-                    <span id="days"></span> dias |
-                    <span id="hours"></span> horas |
-                    <span id="minutes"></span> min |
-                    <span id="seconds"></span> seg
+            <div class="card p-5 text-center card-elegant card-countdown">
+                <h3 class="countdown-title mb-4">Contagem Regressiva</h3>
+                <div id="countdown" class="countdown-grid">
+                    <div class="countdown-item">
+                        <span id="days" class="countdown-number">0</span>
+                        <span class="countdown-label">Dias</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="hours" class="countdown-number">0</span>
+                        <span class="countdown-label">Horas</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="minutes" class="countdown-number">0</span>
+                        <span class="countdown-label">Minutos</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="seconds" class="countdown-number">0</span>
+                        <span class="countdown-label">Segundos</span>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="row mt-5">
         <div class="col">
-            <div class="card p-4">
-                <h5 class="text-center mb-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                         class="bi bi-geo-alt" viewBox="0 0 16 16">
-                        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>
-                        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-                    </svg>
-                    Localização
-                </h5>
+            <div class="card p-4 card-elegant">
+                <h3 class="text-center mb-4">Localização</h3>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1442.7072495729158!2d-54.00377271404394!3d-25.429926699479378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94f14b0569cd758b%3A0x1cb2c78a4835b059!2sComunidade%20da%20Linha%20Bananeira!5e1!3m2!1spt-BR!2sbr!4v1775846688233!5m2!1spt-BR!2sbr"
                         width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
