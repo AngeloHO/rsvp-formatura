@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: rsvp-formatura
+    runtime: java
+    buildCommand: ./mvnw clean package -DskipTests
+    startCommand: java -jar target/rsvp-formatura-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: rsvp-db
+          property: connectionString
+      - key: DB_USERNAME
+        fromDatabase:
+          name: rsvp-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: rsvp-db
+          property: password
+
+databases:
+  - name: rsvp-db
+    databaseName: festa_formatura
+    user: festa_user
