@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,12 +8,15 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600&display=swap">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600&display=swap">
     <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css">
 </head>
+
 <body>
 <!-- Modal de Boas-Vindas -->
-<div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+<div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true"
+     data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content welcome-modal">
             <div class="modal-body text-center p-5">
@@ -23,10 +27,11 @@
                 </div>
                 <p class="welcome-text mb-4">
                     É com grande satisfação que convido você para celebrar<br>
-                    este momento importante.
-                    Para facilitar nossa organização e garantir que tudo esteja de acordo no dia, preciso que preencha algumas informações para confirmar sua presença.
-                    Além disso você pode verificar informações importantes sobre o evento, como data, local e horário. 
-                    Sua participação é fundamental para tornar esta celebração ainda mais especial!
+                    este momento tão especial em nossas vidas!
+                    Para facilitar a organização e garantir que tudo esteja perfeito no grande dia, pedimos que
+                    preencha algumas informações para confirmar sua presença.
+                    Além disso, você poderá consultar todos os detalhes do evento, como data, local e horário.
+                    Sua presença é muito importante para tornar essa conquista ainda mais inesquecível para nós!
                 </p>
                 <div class="welcome-details mb-4">
                     <p class="event-name mb-2">Festa de Angelo e Lucas</p>
@@ -55,7 +60,8 @@
         <div class="section-ornament mx-auto mb-3"></div>
         <h2 class="section-title mb-3">Confirme sua Presença</h2>
         <p class="section-subtitle mb-4">Por gentileza, confirme sua participação até 20 de agosto</p>
-        <button type="button" class="btn btn-primary btn-lg btn-confirm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-primary btn-lg btn-confirm" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
             Confirmar Presença
         </button>
     </div>
@@ -120,7 +126,9 @@
                 </div>
                 <div class="modal-footer bg-light">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" form="formConvidado" class="btn btn-primary px-4">Salvar Confirmação</button>
+                    <button type="submit" form="formConvidado" class="btn btn-primary px-4">Salvar
+                        Confirmação
+                    </button>
                 </div>
             </div>
         </div>
@@ -131,8 +139,10 @@
                 <div class="card-icon mb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
                          class="bi bi-calendar-check" viewBox="0 0 16 16">
-                        <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
-                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+                        <path
+                                d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+                        <path
+                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
                     </svg>
                 </div>
                 <h5 class="card-label">Data</h5>
@@ -144,7 +154,8 @@
                 <div class="card-icon mb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
                          class="bi bi-geo-alt" viewBox="0 0 16 16">
-                        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>
+                        <path
+                                d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>
                         <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
                     </svg>
                 </div>
@@ -164,6 +175,18 @@
                 </div>
                 <h5 class="card-label">Horário</h5>
                 <p class="card-value">18:00h</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center w-100 h-100 card-info-fixa card-elegant">
+                <div class="card-icon mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                         class="bi bi-fork-knife" viewBox="0 0 16 16">
+                        <path d="M13 .5c0-.276-.226-.506-.498-.465-1.703.257-2.94 2.012-3 8.462a.5.5 0 0 0 .498.5c.56.01 1 .13 1 1.003v5.5a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5zM4.25 0a.25.25 0 0 1 .25.25v5.122a.128.128 0 0 0 .256.006l.233-5.14A.25.25 0 0 1 5.24 0h.522a.25.25 0 0 1 .25.238l.233 5.14a.128.128 0 0 0 .256-.006V.25A.25.25 0 0 1 6.75 0h.29a.5.5 0 0 1 .498.458l.423 5.07a1.69 1.69 0 0 1-1.059 1.711l-.053.022a.92.92 0 0 0-.58.884L6.47 15a.971.971 0 1 1-1.942 0l.202-6.855a.92.92 0 0 0-.58-.884l-.053-.022a1.69 1.69 0 0 1-1.059-1.712L3.462.458A.5.5 0 0 1 3.96 0z"/>
+                    </svg>
+                </div>
+                <h5 class="card-label">Jantar</h5>
+                <p class="card-value">Levar pratos e talheres</p>
             </div>
         </div>
     </div>
@@ -189,23 +212,25 @@
                         <span class="countdown-label">Segundos</span>
                     </div>
                 </div>
-                </div>
             </div>
         </div>
     </div>
-    <div class="row mt-5">
-        <div class="col">
-            <div class="card p-4 card-elegant">
-                <h3 class="text-center mb-4">Localização</h3>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1442.7072495729158!2d-54.00377271404394!3d-25.429926699479378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94f14b0569cd758b%3A0x1cb2c78a4835b059!2sComunidade%20da%20Linha%20Bananeira!5e1!3m2!1spt-BR!2sbr!4v1775846688233!5m2!1spt-BR!2sbr"
-                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+</div>
+<div class="row mt-5">
+    <div class="col">
+        <div class="card p-4 card-elegant">
+            <h3 class="text-center mb-4">Localização</h3>
+            <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1442.7072495729158!2d-54.00377271404394!3d-25.429926699479378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94f14b0569cd758b%3A0x1cb2c78a4835b059!2sComunidade%20da%20Linha%20Bananeira!5e1!3m2!1spt-BR!2sbr!4v1775846688233!5m2!1spt-BR!2sbr"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </div>
+</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
 <script th:src="@{/js/app.js}" src="/js/app.js"></script>
 </body>
+
 </html>

@@ -49,4 +49,5 @@ application-secrets.properties
 ### Banco local em arquivo ###
 *.mv.db
 *.trace.db
+DEPLOY.md
 
