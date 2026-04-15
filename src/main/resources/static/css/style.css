@@ -1,6 +1,4 @@
-/* ========================================
-   CONFIGURAÇÕES GLOBAIS
-======================================== */
+
 :root {
     --primary-color: #1a3a52;
     --secondary-color: #2c5f7f;
@@ -25,9 +23,7 @@ body {
     line-height: 1.6;
 }
 
-/* ========================================
-   HERO SECTION
-======================================== */
+
 .hero {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     padding: 120px 0 100px;
@@ -64,9 +60,7 @@ body {
     margin: 0 auto;
 }
 
-/* ========================================
-   MODAL DE BOAS-VINDAS
-======================================== */
+
 .welcome-modal {
     border: none;
     border-radius: 0;
@@ -134,9 +128,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* ========================================
-   SEÇÕES
-======================================== */
+
 .section-ornament {
     width: 60px;
     height: 2px;
@@ -171,9 +163,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* ========================================
-   CARDS
-======================================== */
+
 .card {
     border-radius: 8px;
     border: 1px solid var(--border-light);
@@ -228,9 +218,7 @@ body {
     margin-bottom: 0;
 }
 
-/* ========================================
-   COUNTDOWN
-======================================== */
+
 .card-countdown {
     background: var(--white);
     border-top: 3px solid var(--accent-color);
@@ -275,15 +263,14 @@ body {
     font-weight: 500;
 }
 
-/* ========================================
-   FORMULÁRIOS
-======================================== */
+
 .form-control, .form-select {
     border-radius: 4px;
     padding: 12px 16px;
     border: 1px solid var(--border-light);
     transition: all 0.3s;
     font-size: 1rem;
+    text-transform: uppercase;
 }
 
 .form-control:focus, .form-select:focus {
@@ -324,9 +311,7 @@ body {
     border-color: var(--primary-color);
 }
 
-/* ========================================
-   MAPA
-======================================== */
+
 iframe {
     border-radius: 8px;
     width: 100%;
@@ -334,9 +319,7 @@ iframe {
     border: 1px solid var(--border-light);
 }
 
-/* ========================================
-   NOTIFICAÇÕES
-======================================== */
+
 .toast-custom {
     position: fixed;
     top: 20px;
@@ -380,9 +363,6 @@ iframe {
     }
 }
 
-/* ========================================
-   RESPONSIVIDADE
-======================================== */
 @media (max-width: 768px) {
     .hero-title {
         font-size: 2.5rem;

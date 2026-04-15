@@ -4,9 +4,14 @@ import angelo.example.rsvp_formatura.model.Convidado;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface ConvidadoRepository extends JpaRepository<Convidado, Long> {
+
     Optional<Convidado> findByEmail(String email);
+
+
+    List<Convidado> findByPresencaConfirmada(String presencaConfirmada);
 }

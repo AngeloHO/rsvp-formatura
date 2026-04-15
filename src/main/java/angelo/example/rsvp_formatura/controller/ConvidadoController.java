@@ -24,7 +24,14 @@ public class ConvidadoController {
     public ResponseEntity<?> confirmarPresenca(@Valid @RequestBody Convidado convidado) {
         try {
             Convidado salvo = service.salvar(convidado);
-            return ResponseEntity.ok(salvo);
+
+            // ============ NOVO: Retorna informações extras na resposta ============
+            Map<String, Object> resposta = new HashMap<>();
+            resposta.put("convidado", salvo);
+            resposta.put("totalPessoas", salvo.getTotalPessoas());
+            resposta.put("message", "Confirmação registrada com sucesso!");
+
+            return ResponseEntity.ok(resposta);
         } catch (IllegalArgumentException e) {
             Map<String, String> erro = new HashMap<>();
             erro.put("message", e.getMessage());
@@ -35,5 +42,60 @@ public class ConvidadoController {
     @GetMapping
     public List<Convidado> listarTodos() {
         return service.listarTodos();
+    }
+
+    // ============ NOVOS ENDPOINTS: Estatísticas ============
+
+    /**
+     * GET /api/convidados/estatisticas
+     * Retorna estatísticas gerais do evento
+     */
+    @GetMapping("/estatisticas")
+    public ResponseEntity<Map<String, Object>> getEstatisticas() {
+        Map<String, Object> stats = new HashMap<>();
+
+        List<Convidado> todos = service.listarTodos();
+        long confirmados = todos.stream().filter(c -> "S".equals(c.getPresencaConfirmada())).count();
+        long recusados = todos.stream().filter(c -> "N".equals(c.getPresencaConfirmada())).count();
+
+        stats.put("totalConvidados", todos.size());
+        stats.put("totalConfirmados", confirmados);
+        stats.put("totalRecusados", recusados);
+        stats.put("totalPessoas", service.getTotalPessoasConfirmadas());
+        stats.put("totalAdultos", service.getTotalAdultosConfirmados());
+        stats.put("totalCriancas", service.getTotalCriancasConfirmadas());
+
+        return ResponseEntity.ok(stats);
+    }
+
+    /**
+     * GET /api/convidados/resumo
+     * Retorna um resumo detalhado por convidado
+     */
+    @GetMapping("/resumo")
+    public ResponseEntity<List<Map<String, Object>>> getResumo() {
+        List<Convidado> todos = service.listarTodos();
+
+        List<Map<String, Object>> resumo = todos.stream()
+                .filter(c -> "S".equals(c.getPresencaConfirmada()))
+                .map(c -> {
+                    Map<String, Object> item = new HashMap<>();
+                    item.put("nome", c.getNome());
+                    item.put("email", c.getEmail());
+                    item.put("telefone", c.getTelefone());
+                    item.put("totalPessoas", c.getTotalPessoas());
+                    item.put("quantidadeAcompanhantes", c.getAcompanhantes().size());
+                    item.put("acompanhantes", c.getAcompanhantes().stream().map(a -> {
+                        Map<String, Object> acomp = new HashMap<>();
+                        acomp.put("nome", a.getNome());
+                        acomp.put("idade", a.getIdade());
+                        acomp.put("tipo", a.isCrianca() ? "Criança" : "Adulto");
+                        return acomp;
+                    }).toList());
+                    return item;
+                })
+                .toList();
+
+        return ResponseEntity.ok(resumo);
     }
 }

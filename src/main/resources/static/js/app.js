@@ -2,9 +2,6 @@ const form = document.getElementById("formConvidado");
 const lista = document.getElementById("lista");
 const statusEl = document.getElementById("status");
 
-// ========================================
-// MODAL DE BOAS-VINDAS
-// ========================================
 try {
     const welcomeEl = document.getElementById('welcomeModal');
     if (welcomeEl) {
@@ -58,11 +55,27 @@ if (form) {
 
         const convidado = {
             nome: document.getElementById("nome").value,
+            sobrenome: document.getElementById("sobrenome").value;
             email: document.getElementById("email").value,
             telefone: document.getElementById("telefone").value,
-            presencaConfirmada: presencaSelecionada.value, 
-            sexo: document.getElementById("sexo").value
+            presencaConfirmada: presencaSelecionada.value,
+            sexo: document.getElementById("sexo").value,
+            acompanhantes: []
         };
+
+
+        document.querySelectorAll('.acomp-item').forEach(item => {
+            const nome = item.querySelector('input[name*=".nome"]');
+            const sexo = item.querySelector('select[name*=".sexo"]');
+            const idade = item.querySelector('input[name*=".idade"]');
+            if (nome && nome.value.trim()) {
+                convidado.acompanhantes.push({
+                    nome: nome.value.trim(),
+                    sexo: sexo ? sexo.value : null,
+                    idade: idade && idade.value ? parseInt(idade.value) : null
+                });
+            }
+        });
 
         try {
             const resp = await fetch("/api/convidados", {
@@ -77,7 +90,7 @@ if (form) {
                 } else {
                     mostrarNotificacao("Resposta registrada. Sentiremos sua falta!");
                 }
-                
+
                 form.reset();
 
                 const modal = bootstrap.Modal.getInstance(document.getElementById("exampleModal"));
@@ -132,3 +145,52 @@ const countdown = setInterval(() => {
         }
     }
 }, 1000);
+
+document.getElementById('acompSim').addEventListener('change', function () {
+    document.getElementById('areaAcompanhantes').style.display = 'block';
+});
+
+document.getElementById('acompNao').addEventListener('change', function () {
+    document.getElementById('areaAcompanhantes').style.display = 'none';
+});
+
+let contadorAcomp = 0;
+
+document.getElementById('btnAdicionarAcomp').addEventListener('click', function () {
+    contadorAcomp++;
+    const html = `
+        <div class="card mb-3 acomp-item" data-id="${contadorAcomp}">
+            <div class="card-body">
+                <button type="button" class="btn btn-sm btn-danger float-end btn-remover-acomp">×</button>
+                <h6>Acompanhante ${contadorAcomp}</h6>
+                <div class="row g-2">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" name="acompanhantes[${contadorAcomp}].nome" 
+                               placeholder="Nome" required>
+                        <input type="text" class="form-control" name="acompanhantes[${contadorAcomp}].sobrenome" 
+                               placeholder="Sobrenome" required>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" name="acompanhantes[${contadorAcomp}].sexo">
+                            <option value="H">Masculino</option>
+                            <option value="M">Feminino</option>
+                            <option value="O">Outro</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" class="form-control" name="acompanhantes[${contadorAcomp}].idade" 
+                               placeholder="Idade" min="0" max="120">
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    document.getElementById('listaAcompanhantes').insertAdjacentHTML('beforeend', html);
+});
+
+// Delegação de eventos para remover
+document.getElementById('listaAcompanhantes').addEventListener('click', function (e) {
+    if (e.target.classList.contains('btn-remover-acomp')) {
+        e.target.closest('.acomp-item').remove();
+    }
+});
