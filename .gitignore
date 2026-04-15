@@ -51,3 +51,23 @@ application-secrets.properties
 *.trace.db
 DEPLOY.md
 
+# Java/Maven
+target/
+.mvn/
+*.class
+*.jar
+*.war
+
+# React/Node
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
