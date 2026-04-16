@@ -27,6 +27,10 @@ function Acompanhante({ numero, onRemove, onChange, dados }) {
                             placeholder="Nome"
                             value={dados.nome || ''}
                             onChange={(e) => handleChange('nome', e.target.value)}
+                            maxLength={200}
+                            pattern="[\p{L}\s'-]+"
+                            title="Nome deve conter apenas letras, espaços, hífens e apóstrofos"
+                            required
                         />
                     </div>
 
@@ -37,17 +41,20 @@ function Acompanhante({ numero, onRemove, onChange, dados }) {
                             placeholder="Sobrenome"
                             value={dados.sobrenome || ''}
                             onChange={(e) => handleChange('sobrenome', e.target.value)}
+                            maxLength={100}
+                            pattern="[\p{L}\s'-]*"
+                            title="Sobrenome deve conter apenas letras, espaços, hífens e apóstrofos"
                         />
                     </div>
 
                     <div className="col-md-6">
                         <select
                             className="form-select"
-                            value={dados.sexo || 'H'}
+                            value={dados.sexo || 'M'}
                             onChange={(e) => handleChange('sexo', e.target.value)}
                         >
-                            <option value="H">Masculino</option>
-                            <option value="M">Feminino</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Feminino</option>
                             <option value="O">Outro</option>
                         </select>
                     </div>
@@ -58,7 +65,7 @@ function Acompanhante({ numero, onRemove, onChange, dados }) {
                             className="form-control"
                             placeholder="Idade"
                             min="0"
-                            max="120"
+                            max="150"
                             value={dados.idade || ''}
                             onChange={(e) => handleChange('idade', e.target.value)}
                         />

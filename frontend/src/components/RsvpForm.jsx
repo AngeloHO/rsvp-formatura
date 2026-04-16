@@ -32,7 +32,7 @@ function RsvpForm({ show, onClose, onSuccess, onError }) {
             id: Date.now(),
             nome: '',
             sobrenome: '',
-            sexo: 'H',
+            sexo: 'M',
             idade: ''
         }
         setAcompanhantes(prev => [...prev, novoAcompanhante])
@@ -160,6 +160,9 @@ function RsvpForm({ show, onClose, onSuccess, onError }) {
                                 placeholder="Digite seu nome"
                                 value={formData.nome}
                                 onChange={(e) => handleChange('nome', e.target.value)}
+                                maxLength={100}
+                                pattern="[\p{L}\s'-]+"
+                                title="Nome deve conter apenas letras, espaços, hífens e apóstrofos"
                                 required
                             />
                         </div>
@@ -173,6 +176,9 @@ function RsvpForm({ show, onClose, onSuccess, onError }) {
                                 placeholder="Digite seu sobrenome"
                                 value={formData.sobrenome}
                                 onChange={(e) => handleChange('sobrenome', e.target.value)}
+                                maxLength={100}
+                                pattern="[\p{L}\s'-]+"
+                                title="Sobrenome deve conter apenas letras, espaços, hífens e apóstrofos"
                                 required
                             />
                         </div>
@@ -186,6 +192,7 @@ function RsvpForm({ show, onClose, onSuccess, onError }) {
                                 placeholder="seu@email.com"
                                 value={formData.email}
                                 onChange={(e) => handleChange('email', e.target.value)}
+                                maxLength={255}
                             />
                         </div>
 
@@ -198,6 +205,10 @@ function RsvpForm({ show, onClose, onSuccess, onError }) {
                                 placeholder="(00) 00000-0000"
                                 value={formData.telefone}
                                 onChange={(e) => handleChange('telefone', e.target.value)}
+                                maxLength={20}
+                                pattern="[0-9()\s-]*"
+                                title="Telefone deve conter apenas números, parênteses, espaços e hífens"
+                            />
                             />
                         </div>
 
