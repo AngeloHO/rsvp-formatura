@@ -97,7 +97,15 @@ function RsvpForm({ show, onClose, onSuccess, onError }) {
 
         } catch (error) {
             console.error('Erro ao salvar:', error)
-            onError('Erro ao salvar confirmação. Tente novamente.')
+
+            // Verifica se o erro tem resposta do servidor
+            if (error.response && error.response.data) {
+                const mensagem = error.response.data.message || 'Erro ao salvar confirmação.'
+                onError(mensagem)  
+            } else {
+                // Erro de rede ou conexão
+                onError('Erro de conexão. Verifique sua internet.')
+            }
         } finally {
             setEnviando(false)
         }
@@ -220,8 +228,8 @@ function RsvpForm({ show, onClose, onSuccess, onError }) {
                                 onChange={(e) => handleChange('sexo', e.target.value)}
                             >
                                 <option value="" disabled>Selecione...</option>
-                                <option value="H">Masculino</option>
-                                <option value="M">Feminino</option>
+                                <option value="M">Masculino</option>
+                                <option value="F">Feminino</option>
                                 <option value="O">Outro</option>
                             </select>
                         </div>

@@ -56,7 +56,7 @@ rsvp-formatura/
 - Java 17+
 - Node.js 18+
 - PostgreSQL 14+ (opcional - pode usar H2)
-- Maven 3.9+
+- Maven 3.9+ (opcional - projeto tem wrapper)
 
 ### 1. Clonar o Repositório
 ```bash
@@ -81,28 +81,80 @@ spring.datasource.url=jdbc:h2:mem:testdb
 spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
 ```
 
-### 3. Instalar Dependências do Frontend
+### 3. Executar em Modo Desenvolvimento
+
+#### ✨ OPÇÃO FÁCIL - Scripts Automáticos (Windows)
+
+**Modo Desenvolvimento (frontend + backend separados):**
+```powershell
+.\run-dev.ps1
+```
+Acesse:
+- Frontend: http://localhost:5173
+- Backend: http://localhost:8080/api
+
+**Build Completo (produção):**
+```powershell
+.\build-local.ps1
+java -jar target\rsvp-formatura-0.0.1-SNAPSHOT.jar
+```
+Acesse: http://localhost:8080
+
+---
+
+#### 💪 OPÇÃO MANUAL
+
+**Terminal 1 - Backend (Spring Boot):**
+```bash
+# Windows
+.\mvnw.cmd spring-boot:run
+
+# Linux/Mac
+./mvnw spring-boot:run
+```
+
+**Terminal 2 - Frontend (Vite):**
 ```bash
 cd frontend
 npm install
-```
-
-### 4. Executar em Modo Desenvolvimento
-
-#### Terminal 1 - Backend (Spring Boot)
-```bash
-./mvnw spring-boot:run
-# Servidor rodando em http://localhost:8080
-```
-
-#### Terminal 2 - Frontend (Vite)
-```bash
-cd frontend
 npm run dev
-# Servidor rodando em http://localhost:5173
 ```
 
-Acesse: **http://localhost:5173**
+Acesse: http://localhost:5173
+
+---
+
+### 4. Build para Produção (Manual)
+
+```bash
+# 1. Build do frontend
+cd frontend
+npm install
+npm run build
+
+# 2. Copiar build para resources/static
+cd ..
+
+# Windows PowerShell
+mkdir -p src\main\resources\static
+Copy-Item -Path "frontend\dist\*" -Destination "src\main\resources\static\" -Recurse -Force
+
+# Linux/Mac
+mkdir -p src/main/resources/static
+cp -r frontend/dist/* src/main/resources/static/
+
+# 3. Build do backend (inclui o frontend)
+# Windows
+.\mvnw.cmd clean package -DskipTests
+
+# Linux/Mac
+./mvnw clean package -DskipTests
+
+# 4. Executar
+java -jar target/rsvp-formatura-0.0.1-SNAPSHOT.jar
+```
+
+Acesse: http://localhost:8080
 
 ## 📦 Build para Produção
 
