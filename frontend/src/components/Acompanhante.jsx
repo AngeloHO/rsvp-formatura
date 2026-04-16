@@ -28,7 +28,7 @@ function Acompanhante({ numero, onRemove, onChange, dados }) {
                             value={dados.nome || ''}
                             onChange={(e) => handleChange('nome', e.target.value)}
                             maxLength={200}
-                            pattern="[\p{L}\s'-]+"
+                            pattern="[\p{L}\s'\-]+"
                             title="Nome deve conter apenas letras, espaços, hífens e apóstrofos"
                             required
                         />
@@ -42,7 +42,7 @@ function Acompanhante({ numero, onRemove, onChange, dados }) {
                             value={dados.sobrenome || ''}
                             onChange={(e) => handleChange('sobrenome', e.target.value)}
                             maxLength={100}
-                            pattern="[\p{L}\s'-]*"
+                            pattern="[\p{L}\s'\-]*"
                             title="Sobrenome deve conter apenas letras, espaços, hífens e apóstrofos"
                         />
                     </div>

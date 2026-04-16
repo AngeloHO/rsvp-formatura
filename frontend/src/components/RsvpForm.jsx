@@ -169,7 +169,7 @@ function RsvpForm({ show, onClose, onSuccess, onError }) {
                                 value={formData.nome}
                                 onChange={(e) => handleChange('nome', e.target.value)}
                                 maxLength={100}
-                                pattern="[\p{L}\s'-]+"
+                                pattern="[\p{L}\s'\-]+"
                                 title="Nome deve conter apenas letras, espaços, hífens e apóstrofos"
                                 required
                             />
@@ -185,7 +185,7 @@ function RsvpForm({ show, onClose, onSuccess, onError }) {
                                 value={formData.sobrenome}
                                 onChange={(e) => handleChange('sobrenome', e.target.value)}
                                 maxLength={100}
-                                pattern="[\p{L}\s'-]+"
+                                pattern="[\p{L}\s'\-]+"
                                 title="Sobrenome deve conter apenas letras, espaços, hífens e apóstrofos"
                                 required
                             />
@@ -214,7 +214,7 @@ function RsvpForm({ show, onClose, onSuccess, onError }) {
                                 value={formData.telefone}
                                 onChange={(e) => handleChange('telefone', e.target.value)}
                                 maxLength={20}
-                                pattern="[0-9()\s-]*"
+                                pattern="[0-9()\s\-]*"
                                 title="Telefone deve conter apenas números, parênteses, espaços e hífens"
                             />
                         </div>
