@@ -1,2 +1,19 @@
+# Maven wrapper - sempre LF
 /mvnw text eol=lf
+
+# Windows scripts - sempre CRLF
 *.cmd text eol=crlf
+
+# Frontend - normalizar para LF
+*.js text eol=lf
+*.jsx text eol=lf
+*.json text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+
+# Java - normalizar para LF
+*.java text eol=lf
+*.properties text eol=lf
+*.xml text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf

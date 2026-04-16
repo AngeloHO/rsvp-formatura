@@ -48,6 +48,29 @@ application-secrets.properties
 
 ### Banco local em arquivo ###
 *.mv.db
+
+### Build do frontend React ###
+src/main/resources/static/
 *.trace.db
 DEPLOY.md
 
+# Java/Maven
+target/
+.mvn/
+*.class
+*.jar
+*.war
+
+# React/Node
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

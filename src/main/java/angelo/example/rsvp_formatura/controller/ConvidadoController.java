@@ -14,7 +14,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/convidados")
-@CrossOrigin(origins = "*") // Permite acesso do frontend
 public class ConvidadoController {
 
     @Autowired
@@ -25,7 +24,7 @@ public class ConvidadoController {
         try {
             Convidado salvo = service.salvar(convidado);
 
-            // ============ NOVO: Retorna informações extras na resposta ============
+
             Map<String, Object> resposta = new HashMap<>();
             resposta.put("convidado", salvo);
             resposta.put("totalPessoas", salvo.getTotalPessoas());
@@ -36,6 +35,12 @@ public class ConvidadoController {
             Map<String, String> erro = new HashMap<>();
             erro.put("message", e.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
+        } catch (Exception e) {
+            Map<String, String> erro = new HashMap<>();
+            erro.put("message", "Erro ao processar solicitação: " + e.getMessage());
+            erro.put("error", e.getClass().getSimpleName());
+            e.printStackTrace(); // Log do erro completo no console
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erro);
         }
     }
 
@@ -43,8 +48,6 @@ public class ConvidadoController {
     public List<Convidado> listarTodos() {
         return service.listarTodos();
     }
-
-    // ============ NOVOS ENDPOINTS: Estatísticas ============
 
     /**
      * GET /api/convidados/estatisticas
@@ -88,6 +91,7 @@ public class ConvidadoController {
                     item.put("acompanhantes", c.getAcompanhantes().stream().map(a -> {
                         Map<String, Object> acomp = new HashMap<>();
                         acomp.put("nome", a.getNome());
+                        acomp.put("sobrenome", a.getSobrenome());
                         acomp.put("idade", a.getIdade());
                         acomp.put("tipo", a.isCrianca() ? "Criança" : "Adulto");
                         return acomp;
