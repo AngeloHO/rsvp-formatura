@@ -16,6 +16,8 @@ public class Acompanhante {
     @Column(nullable = false)
     private String nome;
 
+    private String sobrenome;
+
     @Column(length = 1)
     private String sexo; 
 
@@ -29,8 +31,9 @@ public class Acompanhante {
     public Acompanhante() {
     }
 
-    public Acompanhante(String nome, String sexo, Integer idade) {
+    public Acompanhante(String nome, String sobrenome, String sexo, Integer idade) {
         this.nome = nome;
+        this.sobrenome = sobrenome;
         this.sexo = sexo;
         this.idade = idade;
     }
@@ -50,6 +53,14 @@ public class Acompanhante {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
     }
 
     public String getSexo() {
