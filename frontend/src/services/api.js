@@ -4,8 +4,8 @@ const api = axios.create({
     baseURL: 'http://localhost:8080/api',
     headers: {
         'Content-Type': 'application/json'
-    }
-
+    },
+    withCredentials: false  // Importante: deve corresponder ao backend
 })
 
 export const salvarConvidado = async (convidado) => {
