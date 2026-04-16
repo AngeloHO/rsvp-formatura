@@ -131,8 +131,8 @@ O projeto está configurado para deploy automático no Render via `render.yaml`.
 ### Configuração Automática
 1. Conecte o repositório GitHub ao Render
 2. O Render executará automaticamente:
-   - Build do frontend React
-   - Cópia dos arquivos para `static/`
+   - Build do frontend React (Vite)
+   - Cópia dos arquivos para `src/main/resources/static/`
    - Build do backend Maven
    - Deploy do JAR
 
@@ -141,6 +141,25 @@ O banco de dados PostgreSQL é configurado automaticamente:
 - `DATABASE_URL`
 - `DB_USERNAME`
 - `DB_PASSWORD`
+
+### Troubleshooting - Erro 404
+
+Se você receber **Whitelabel Error Page** ou **404** após o deploy:
+
+1. **Verifique os logs de build** no Render:
+   - Procure por "=== Iniciando build do frontend ==="
+   - Verifique se os arquivos foram copiados para `static/`
+   - Confirme que o Maven finalizou com sucesso
+
+2. **Arquivos necessários**:
+   - `src/main/resources/static/index.html` deve existir no JAR
+   - `WebConfig.java` deve estar presente para roteamento SPA
+
+3. **Se o problema persistir**, force um novo deploy:
+   ```bash
+   git commit --allow-empty -m "Force rebuild"
+   git push
+   ```
 
 ## 🔌 API Endpoints
 
@@ -214,10 +233,54 @@ POST /api/convidados
 
 ## 🔒 Segurança
 
-- Validação de dados no backend (Bean Validation)
-- CORS configurado
-- Proteção contra SQL Injection (JPA/Hibernate)
-- Sanitização de entradas
+### Validação e Sanitização de Dados
+
+#### Backend (Bean Validation)
+- ✅ **SQL Injection** - Protegido via JPA/Hibernate (prepared statements)
+- ✅ **Validação de campos obrigatórios** - `@NotBlank` em campos essenciais
+- ✅ **Validação de email** - `@Email` com formato RFC compliant
+- ✅ **Validação de tamanho** - `@Size` em todos os campos de texto
+- ✅ **Validação de padrões** - `@Pattern` para:
+  - Nomes: apenas letras, espaços, hífens e apóstrofos
+  - Telefone: apenas números, parênteses, espaços e hífens
+  - Email: máximo 255 caracteres
+- ✅ **Validação de valores permitidos**:
+  - `presencaConfirmada`: apenas 'S' ou 'N'
+  - `sexo`: apenas 'M', 'F' ou 'O'
+- ✅ **Validação de idade** - `@Min(0)` e `@Max(150)`
+- ✅ **Validação em cascata** - `@Valid` valida acompanhantes automaticamente
+
+#### Frontend (HTML5 + React)
+- ✅ **Validação HTML5** - `required`, `type="email"`, `pattern`, `maxLength`
+- ✅ **Limitação de entrada** - Campos com tamanho máximo definido
+- ✅ **Validação de idade** - Input numérico com `min="0"` e `max="150"`
+- ✅ **Prevenção de valores inválidos** - Selects e radios limitam opções
+- ✅ **Feedback visual** - Mensagens de erro claras do backend
+
+#### Limites de Tamanho
+| Campo | Tamanho Máximo |
+|-------|----------------|
+| Nome/Sobrenome (Convidado) | 100 caracteres |
+| Nome (Acompanhante) | 200 caracteres |
+| Sobrenome (Acompanhante) | 100 caracteres |
+| Email | 255 caracteres |
+| Telefone | 20 caracteres |
+| Presença confirmada | 1 caractere (S/N) |
+| Sexo | 1 caractere (M/F/O) |
+| Idade | 0-150 anos |
+
+### Proteções Implementadas
+- **XSS (Cross-Site Scripting)** - Validação de padrões impede scripts
+- **SQL Injection** - JPA/Hibernate com queries parametrizadas
+- **CORS** - Configurado para origens específicas
+- **Input Validation** - Camada dupla (frontend + backend)
+- **Email único** - Validação de duplicidade no banco
+
+### Boas Práticas
+- Validação sempre no backend (nunca confiar apenas no frontend)
+- Mensagens de erro genéricas para não expor detalhes do sistema
+- Logs de erro no console do servidor para debugging
+- Tratamento de exceções centralizado no controller
 
 ## 🤝 Contribuindo
 

@@ -1,8 +1,7 @@
 package angelo.example.rsvp_formatura.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,22 +15,34 @@ public class Convidado {
     private Long id;
 
     @NotBlank(message = "Nome é obrigatório")
-    @Column(nullable = false)
+    @Size(min = 2, max = 100, message = "Nome deve ter entre 2 e 100 caracteres")
+    @Pattern(regexp = "^[\\p{L}\\s'-]+$", message = "Nome deve conter apenas letras, espaços, hífens e apóstrofos")
+    @Column(nullable = false, length = 100)
     private String nome;
 
     @NotBlank(message = "Sobrenome é obrigatório")
-    @Column(nullable = false)
+    @Size(min = 2, max = 100, message = "Sobrenome deve ter entre 2 e 100 caracteres")
+    @Pattern(regexp = "^[\\p{L}\\s'-]+$", message = "Sobrenome deve conter apenas letras, espaços, hífens e apóstrofos")
+    @Column(nullable = false, length = 100)
     private String sobrenome;
 
     @NotBlank(message = "A presença é obrigatória")
+    @Pattern(regexp = "^[SN]$", message = "Presença confirmada deve ser 'S' ou 'N'")
     @Column(name = "presenca_confirmada", length = 1)
     private String presencaConfirmada; // 'S' ou 'N'
 
+    @Size(max = 20, message = "Telefone deve ter no máximo 20 caracteres")
+    @Pattern(regexp = "^[0-9()\\s-]*$", message = "Telefone deve conter apenas números, parênteses, espaços e hífens")
+    @Column(length = 20)
     private String telefone;
 
     @Email(message = "Email inválido")
+    @Size(max = 255, message = "Email deve ter no máximo 255 caracteres")
+    @Column(length = 255)
     private String email;
 
+    @Pattern(regexp = "^[MFO]$", message = "Sexo deve ser 'M', 'F' ou 'O'")
+    @Column(length = 1)
     private String sexo;
 
 

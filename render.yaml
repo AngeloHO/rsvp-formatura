@@ -3,10 +3,22 @@ services:
     name: rsvp-formatura
     runtime: java
     buildCommand: |
-      cd frontend && npm install && npm run build
+      echo "=== Iniciando build do frontend ==="
+      cd frontend
+      npm install
+      npm run build
+      echo "=== Conteúdo da pasta dist: ==="
+      ls -la dist/
+      cd ..
+      echo "=== Criando pasta static ==="
       mkdir -p src/main/resources/static
-      cp -r frontend/dist/* src/main/resources/static/
+      echo "=== Copiando arquivos do frontend ==="
+      cp -rv frontend/dist/* src/main/resources/static/
+      echo "=== Arquivos copiados para static: ==="
+      ls -la src/main/resources/static/
+      echo "=== Iniciando build do Maven ==="
       ./mvnw clean package -DskipTests
+      echo "=== Build concluído ==="
     startCommand: java -jar target/rsvp-formatura-0.0.1-SNAPSHOT.jar
     envVars:
       - key: DATABASE_URL

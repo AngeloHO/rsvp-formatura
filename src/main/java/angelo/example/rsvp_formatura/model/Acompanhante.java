@@ -1,7 +1,7 @@
 package angelo.example.rsvp_formatura.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -13,14 +13,23 @@ public class Acompanhante {
     private Long id;
 
     @NotBlank(message = "Nome do acompanhante é obrigatório")
-    @Column(nullable = false)
+    @Size(min = 2, max = 200, message = "Nome deve ter entre 2 e 200 caracteres")
+    @Pattern(regexp = "^[\\p{L}\\s'-]+$", message = "Nome deve conter apenas letras, espaços, hífens e apóstrofos")
+    @Column(nullable = false, length = 200)
     private String nome;
 
+    @Size(max = 100, message = "Sobrenome deve ter no máximo 100 caracteres")
+    @Pattern(regexp = "^[\\p{L}\\s'-]*$", message = "Sobrenome deve conter apenas letras, espaços, hífens e apóstrofos")
+    @Column(length = 100)
     private String sobrenome;
 
+    @Pattern(regexp = "^[MFO]$", message = "Sexo deve ser 'M', 'F' ou 'O'")
     @Column(length = 1)
     private String sexo; 
 
+    @Min(value = 0, message = "Idade deve ser maior ou igual a 0")
+    @Max(value = 150, message = "Idade deve ser menor ou igual a 150")
+    @Column
     private Integer idade; 
 
     @ManyToOne
