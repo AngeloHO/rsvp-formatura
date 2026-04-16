@@ -209,7 +209,6 @@ function RsvpForm({ show, onClose, onSuccess, onError }) {
                                 pattern="[0-9()\s-]*"
                                 title="Telefone deve conter apenas números, parênteses, espaços e hífens"
                             />
-                            />
                         </div>
 
                         <div className="col-md-12">
