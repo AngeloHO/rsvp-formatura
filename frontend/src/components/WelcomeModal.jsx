@@ -23,12 +23,10 @@ function WelcomeModal() {
                 </div>
 
                 <p className="welcome-text mb-4">
-                    É com grande satisfação que convido você para celebrar<br/>
-                    este momento tão especial em nossas vidas!
-                    Para facilitar a organização e garantir que tudo esteja perfeito no grande dia,
-                    pedimos que preencha algumas informações para confirmar sua presença.
-                    Além disso, você poderá consultar todos os detalhes do evento, como data, local e horário.
-                    Sua presença é muito importante para tornar essa conquista ainda mais inesquecível para nós!
+                    Sua presença é fundamental para a nossa comemoração!
+                    Para que a gente consiga organizar tudo da melhor forma, pedimos que <strong>leia os detalhes com atenção e preencha todos os campos com calma</strong>.
+                    <br/><br/>
+                    Clicando em ver detalhes do evento você confere o local e o horário da festa. Bora celebrar essa conquista juntos!
                 </p>
 
                 <div className="welcome-details mb-4">

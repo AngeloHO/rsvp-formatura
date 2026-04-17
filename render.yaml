@@ -8,9 +8,6 @@ services:
       npm --version
       echo "=== DEBUG: Listando arquivos ==="
       ls -la
-      echo "=== Configurando variáveis de ambiente para build do frontend ==="
-      export VITE_API_URL="${VITE_API_URL:-/api}"
-      echo "VITE_API_URL configurado como: $VITE_API_URL"
       echo "=== Iniciando build do frontend ==="
       cd frontend || exit 1
       npm install || exit 1
@@ -27,8 +24,6 @@ services:
       echo "=== Build concluído ==="
     startCommand: java -jar target/rsvp-formatura-0.0.1-SNAPSHOT.jar
     envVars:
-      - key: VITE_API_URL
-        value: /api
       - key: DATABASE_URL
         fromDatabase:
           name: rsvp-db

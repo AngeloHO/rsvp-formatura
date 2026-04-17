@@ -49,7 +49,7 @@ function EventInfo() {
     return (
         <div className="row g-4 mt-4">
             {infoCards.map(card => (
-                <div key={card.id} className="col-md-4">
+                <div key={card.id} className="col-md-3">
                     <div className="card text-center w-100 h-100 card-info-fixa card-elegant">
                         <div className="card-icon mb-3">
                             {card.icon}

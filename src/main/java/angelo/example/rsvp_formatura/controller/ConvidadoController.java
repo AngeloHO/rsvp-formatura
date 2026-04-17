@@ -13,8 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/convidados")
-public class ConvidadoController {
+@RequestMapping("/appublic class ConvidadoController {
 
     @Autowired
     private ConvidadoService service;
@@ -92,6 +91,8 @@ public class ConvidadoController {
                         Map<String, Object> acomp = new HashMap<>();
                         acomp.put("nome", a.getNome());
                         acomp.put("sobrenome", a.getSobrenome());
+bject> acomp = new HashMap<>();
+                        acomp.put("nome", a.getNome());
                         acomp.put("idade", a.getIdade());
                         acomp.put("tipo", a.isCrianca() ? "Criança" : "Adulto");
                         return acomp;
