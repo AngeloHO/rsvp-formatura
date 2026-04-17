@@ -13,7 +13,8 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/appublic class ConvidadoController {
+@RequestMapping("/api/convidados")
+public class ConvidadoController {
 
     @Autowired
     private ConvidadoService service;
@@ -22,7 +23,6 @@ import java.util.Map;
     public ResponseEntity<?> confirmarPresenca(@Valid @RequestBody Convidado convidado) {
         try {
             Convidado salvo = service.salvar(convidado);
-
 
             Map<String, Object> resposta = new HashMap<>();
             resposta.put("convidado", salvo);
@@ -38,7 +38,7 @@ import java.util.Map;
             Map<String, String> erro = new HashMap<>();
             erro.put("message", "Erro ao processar solicitação: " + e.getMessage());
             erro.put("error", e.getClass().getSimpleName());
-            e.printStackTrace(); // Log do erro completo no console
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erro);
         }
     }
@@ -48,10 +48,6 @@ import java.util.Map;
         return service.listarTodos();
     }
 
-    /**
-     * GET /api/convidados/estatisticas
-     * Retorna estatísticas gerais do evento
-     */
     @GetMapping("/estatisticas")
     public ResponseEntity<Map<String, Object>> getEstatisticas() {
         Map<String, Object> stats = new HashMap<>();
@@ -70,10 +66,6 @@ import java.util.Map;
         return ResponseEntity.ok(stats);
     }
 
-    /**
-     * GET /api/convidados/resumo
-     * Retorna um resumo detalhado por convidado
-     */
     @GetMapping("/resumo")
     public ResponseEntity<List<Map<String, Object>>> getResumo() {
         List<Convidado> todos = service.listarTodos();
@@ -91,8 +83,6 @@ import java.util.Map;
                         Map<String, Object> acomp = new HashMap<>();
                         acomp.put("nome", a.getNome());
                         acomp.put("sobrenome", a.getSobrenome());
-bject> acomp = new HashMap<>();
-                        acomp.put("nome", a.getNome());
                         acomp.put("idade", a.getIdade());
                         acomp.put("tipo", a.isCrianca() ? "Criança" : "Adulto");
                         return acomp;
